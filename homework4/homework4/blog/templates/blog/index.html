@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+
+{% block error %} {% endblock %}
+
+{% block content %}
+    <section class="container">
+        <section class="container center-block">
+            <h1 id="home-title"> 
+                Welcome to 15637 Blog<br>
+                <small>Write anything here that you find interesting</small>
+            </h1>
+            <hr>
+        </section>
+        <section class="container col-md-3">
+            <div>
+                <h2>Our Bloggers</h2>
+                <p class="lead">People who are here</p>
+            </div>
+            <div id="list-group" class="list-group"></div>
+        </section>
+    
+        <section class="container col-md-9">
+            <div>
+                <h2>Current blogs</h2>
+                <p class="lead">Recent blogs posted</p>
+            </div>
+            {% for post in posts %}
+            <div class="panel panel-primary">
+                    <div class="panel-heading"> 
+                        <div class="panel-title">
+                            <a href="{% url 'user-posts' post.user.username %}" id="blog-author"> {{ post.user.first_name}} {{post.user.last_name}}</a>
+                        </div>
+                    </div>                
+                    <div class="panel-body">
+                        <div >
+                            <h2>{{ post.title }}</h2>
+                            <p>{{ post.created }}</p>
+                            <hr>
+                            {% if post.image %}
+                                <img class="img-thumbnail img-responsive" id="img" src="{% url 'image' post.id %}" alt="{{ post.image }}" >
+                            {% endif %}                
+                            <p class="lead">{{ post.content }}</p>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </section>
+    </section>
+    <script type="text/javascript">
+    	$(function(){
+    		$("document").ready(onload);
+
+    		function onload(){
+    			$.get("/blog/users", function(xml){
+    					$("#list-group").empty();
+    					$(xml).children().children().each(function(){
+    						var username = $($(this).find("username")).text();
+    						var li = $("<li></li>").addClass("list-group-item")
+    	                         $("<a></a>").addClass("list-group-item")
+                                    .attr("href","/blog/user-posts/"+username)
+                                    .html($($(this).find("first_name")).text() + ' ' + $($(this).find("last_name")).text())
+                                    .attr("id", username)
+                                    .appendTo($("#list-group"));
+    					});
+    					{% if followee %}
+    						var v = "#" + "{{ followee.username }}";
+    						$(v).addClass("active");
+    					{% endif %}
+
+    			});
+    		}
+    		setInterval(onload, 10000);
+    	});
+    </script>
+{% endblock %}

@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block errors %}{% endblock %}
+
+{% block content %}
+	<section class="container">
+		<div class="container col-md-4 col-md-offset-4">
+		{% if error %}
+			<h3> Error </h3>
+			<p class="lead"> Sorry...{{ error }} </p>
+		{% else %}
+			<h3> Welcome back, {{ name }}! </h3>
+			<p class="lead"> Your account has been successfully activated. </p>
+		{% endif %}
+		</div>
+	</section>
+{% endblock %}

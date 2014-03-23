@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <section class="container">
+        <div class="container col-md-3 col-md-offset-5">
+            <form method="post" action="{% url 'register' %}">
+                <h2> Please sign up </h2>
+                <div class="form-group">
+                    {% for field in form.visible_fields %}
+                        {{ field }}
+                        {% if field.errors %} 
+                            <div class="field-error alert-danger alert help-block">{{ field.errors }}</div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+                {% if form.non_field_errors %}
+                    <section>
+                        <div id="id-error" class="alert alert-danger">
+                            {% for error in form.non_field_errors %}
+                                {{ error }}
+                            {% endfor %}
+                        </div>   
+                    </section>
+                {% endif %}                  
+                <button class="btn btn-lg btn-primary btn-block" type="submit"> Sign Up </button>            
+                {% csrf_token %}
+            </form>
+        </div>      
+        {% csrf_token %}
+    </section>
+    <script type="text/javascript">
+        $("#usname").attr("placeholder", "User Name")
+        .attr("required", "required")
+        .attr("autofocus","autofocus")
+        .addClass("form-control input-lg");
+        $("#fsname").attr("placeholder", "First Name")
+        .attr("required", "required")
+        .addClass("form-control input-lg");
+        $("#lsname").attr("placeholder", "Last Name")
+        .attr("required", "required")
+        .addClass("form-control input-lg");
+        $("#email").attr("placeholder", "Email")
+        .attr("required", "required")            
+        .addClass("form-control input-lg");        
+        $("#ps1").attr("placeholder", "Password")
+        .attr("required", "required")            
+        .addClass("form-control input-lg");
+        $("#ps2").attr("placeholder", "Confirm Password")
+        .attr("required", "required")            
+        .addClass("form-control input-lg");        
+    </script>
+{% endblock %}
+

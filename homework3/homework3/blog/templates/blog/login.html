@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block errors %}
+    {% if form.errors %}
+    <div class="container">
+        <p class="err-msg">
+            Incorrect user name and password, or your account has not been validated.
+        </p>
+    </div> 
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <form class="form-signin" method="post" action="{% url 'login' %}">
+            <h3 class="form-signin-heading"> Sign in </h3>
+            <div>
+                <p>{{ form.username.label_tag }}</p>
+                <p>{{ form.username }}</p>
+            </div>
+            <div>
+                <p>{{ form.password.label_tag }}</p>
+                <p>{{ form.password }}</p>
+            </div>
+
+            <button class="btn btn-primary " type="submit" value="Login"/> Sign in </button>
+            <a class="btn" href="{% url 'register' %}">Sign up</a>
+            <input type="hidden" name="next" value="{{ next }}" />
+            {% csrf_token %}
+        </form>
+    </div>    
+{% endblock %}

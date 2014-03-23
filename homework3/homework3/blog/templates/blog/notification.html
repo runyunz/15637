@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block title %} Please confirm {% endblock %}
+
+{% block content %}
+	<section>
+		<div class="container msg-div">
+		<h2>Thanks for your registration!</h2>
+		<p>Hi {{ user }},</p>
+		<p>we have sent you a confirmation email. Please check <a href=mailto:{{email}}>{{ email }}</a> and active your account.</p>
+		<p>Cheers,</p>
+		<p>15637 Blog Team</p>
+		</div>
+	</section>
+{% endblock %}

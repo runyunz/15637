@@ -1,0 +1,28 @@
+#blog-nav > div {
+	background-color: #3ba4c2;
+}
+
+#blog-nav a{
+	color:#ffffff;
+}
+
+#blog-nav li:hover {
+	background-color: #4097b0;
+}
+
+.form-error {
+	text-align: center;
+}
+
+.field-error {
+	padding: 1px;
+	margin: 0px;
+}
+
+#home-title {
+	text-align: center;
+}
+
+#blog-footer {
+	padding-bottom: 10px;
+}

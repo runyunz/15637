@@ -1,0 +1,8 @@
+<users>{% for user in users %}
+  <user>
+    <id>{{user.id}}</id>
+    <username>{{user.username}}</username>
+    <first_name>{{user.first_name}}</first_name>
+    <last_name>{{user.last_name}}</last_name>
+  </user>{% endfor %}
+</users>

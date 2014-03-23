@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block errors %}
+    <div class="container">
+    {% for error in form.non_field_errors %}
+        <p class="err-msg">
+            {{ error }}
+        </p>
+    {% endfor %}
+    </div>     
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <form class="form-signin" method="post" action="{% url 'register' %}">
+            <h3 class="form-signin-heading"> Sign up </h3>
+            {% for field in form.visible_fields %}
+
+            <div>
+                <p>{{ field.label_tag }}</p>
+                {{ field }}
+                <span class="err-msg">{{ field.errors }}</span>
+            </div>
+            {% endfor %}
+
+            <button class="btn btn-primary " type="submit" value="Sign Up"/> Sign up </button>
+            {% csrf_token %}
+        </form>
+    </div>
+    {% for field in form.hidden_fields %}
+        {{field}}
+    {% endfor %}          
+    {% csrf_token %}
+{% endblock %}
+

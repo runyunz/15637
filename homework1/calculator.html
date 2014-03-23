@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>calculator</title>
+		<link rel="stylesheet" href="bootstrap.css">
+		<link rel="stylesheet" href="bootstrap-theme.css">
+		<link rel="stylesheet" href="calculator.css">
+	</head>
+	<body onload="load()">
+		<div class="calculator">
+			<div class="bar">
+				<input id="display" type="text" class="form-control input-lg text-right" value="0" readonly>
+			</div>
+			<div class="col">
+				<button id="7" type="button" class="btn btn-lg btn-info number">7</button>
+				<button id="8" type="button" class="btn btn-lg btn-info number">8</button>
+				<button id="9" type="button" class="btn btn-lg btn-info number">9</button>
+				<button id="+" type="button" class="btn btn-lg btn-info operator">+</button>
+			</div>
+			<div class="col">
+				<button id="4" type="submit" class="btn btn-lg btn-info number">4</button>
+				<button id="5" type="submit" class="btn btn-lg btn-info number">5</button>
+				<button id="6" type="submit" class="btn btn-lg btn-info number">6</button>
+				<button id="-" type="submit" class="btn btn-lg btn-info operator">-</button>
+			</div>
+			<div class="col">
+				<button id="1" type="submit" class="btn btn-lg btn-info number">1</button>
+				<button id="2" type="submit" class="btn btn-lg btn-info number">2</button>
+				<button id="3" type="submit" class="btn btn-lg btn-info number">3</button>
+				<button id="*" type="submit" class="btn btn-lg btn-info operator">*</button>
+			</div>
+			<div class="col">
+				<button id="null" type="submit" class="btn btn-lg btn-info invisible">0</button>
+				<button id="0" type="submit" class="btn btn-lg btn-info number">0</button>
+				<button id="=" type="submit" class="btn btn-lg btn-info result">=</button>
+				<button id="/" type="submit" class="btn btn-lg btn-info operator">/</button>
+			</div>
+		</div>
+		<script type="text/javascript" src="calculator.js"></script>
+	</body>
+</html>

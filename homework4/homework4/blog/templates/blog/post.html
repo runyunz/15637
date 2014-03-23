@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+
+{% block error %} {% endblock %}
+
+{% block content %}
+<section class="container">
+    <div class="row">
+        <section class="container col-md-7">
+            <div>
+                <h2>My blogs</h2>
+                <p class="lead">Recent blogs posted</p>
+            </div>
+            {% for post in posts %}
+            <div class="panel panel-primary">
+                <div class="panel-body">
+                    <a class="close" href="{% url 'delete' post.id %}">&times;</a>
+                    <h2>{{ post.title }}</h2>
+                    <p>{{ post.created }}</p>
+                    <hr>
+                    {% if post.image %}
+                        <img id="img" class="img-thumbnail" src="{% url 'image' post.id %}" alt="{{ post.image }}" data-src="holder.js/140x140"> 
+                    {% endif %}                
+                    <p class="lead">{{ post.content }}</p>
+                </div>
+            </div>
+            {% endfor %}
+        </section>
+
+        <section class="container col-md-5">
+            <h2>Add a new post</h2>
+            <p class="lead">Input anything here</p>        
+            <form class="form-group" enctype="multipart/form-data" action="{% url 'add' %}" method="post">
+            <div class="form-group"> 
+                {% for field in form %}
+                    {{ field }}
+                {% endfor %}
+            </div>
+            <button class="btn btn-lg btn-primary btn-block" type="submit" value="Post"/> Post </button>
+            {% csrf_token %}
+            </form>
+        </section>
+    </div>
+</section>
+
+    <script type="text/javascript">
+        $("#blog-title").attr("placeholder", "Title")
+        .attr("required", "required")
+        .attr("autofocus","autofocus")
+        .addClass("form-control input-lg");
+
+        $("#blog-content").attr("placeholder", "What's up?")
+        .attr("required", "required")            
+        .addClass("form-control input-lg");
+    </script>
+
+{% endblock %}
+
+

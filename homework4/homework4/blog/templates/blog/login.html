@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <section class="container">
+        <div class="container col-md-3 col-md-offset-5">
+            <form role="form" method="post" action="{% url 'login' %}">
+                <h2> Please sign in: </h2>
+
+                <div class="form-group"> 
+                    {{ form.username }}
+                    {{ form.password }}
+                </div>
+            {% if form.errors %}
+                    <div class="alert alert-danger">
+                        {% for key, value in form.errors.items %}
+                            {{ value | striptags }}
+                        {% endfor %}
+                    </div> 
+                {% endif %}                
+                <button class="btn btn-lg btn-primary btn-block" type="submit"> Sign In </button>
+                <span class="help-block">New Users? <a href="{% url 'register' %}">Sign up</a> for a new account.</span>
+                {% csrf_token %}
+            </form>
+        </div>
+    </section>
+    <script type="text/javascript">
+        $("#id_username").attr("placeholder", "User Name")
+        .attr("required", "required")
+        .attr("autofocus","autofocus")
+        .addClass("form-control input-lg");
+
+        $("#id_password").attr("placeholder", "Password")
+        .attr("required", "required")            
+        .addClass("form-control input-lg");
+    </script>
+{% endblock %}

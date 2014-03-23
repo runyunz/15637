@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <section>
+        <div class="container msg-div">
+            <div class="blog-header">
+                <h2 class="blog-title">
+                    Current blogs
+                    <small><a href="{% url 'logout' %}">Logout</a></small>
+                </h2>
+                <p class="lead blog-description">Recent blogs posted</p>
+            </div>
+
+            {% for post in posts %}
+            <div class="blog-post">
+                <h3 class="blog-post-title">
+                    {{ post.title }} 
+                    <small><a href="{% url 'delete' post.id %}">delete</a></small>
+                </h3>
+                <p class="blog-post-meta"> {{ post.created }} </p>                
+                <p> {{ post.content }} </p>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+    <section>
+        <div class="container msg-div">
+            <div class="blog-header">
+                <h2 class="blog-title">Add a new post</h2>
+                <p class="lead blog-description">Input here</p>
+            </div>
+            <form class="form-group" action="{% url 'add' %}" method="post">
+            {% for field in form %}
+                <p>{{ field.label_tag }}</p>
+                {{ field }}
+                <span class="err-msg">{{ field.errors }}</span>
+            {% endfor %}
+            <button class="btn btn-primary " type="submit" value="Post"/> Post </button>
+            {% csrf_token %}
+            </form>
+        </div>
+    </section>
+{% endblock %}
+
+</body>
+</html>
+

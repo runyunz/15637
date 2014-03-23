@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>calculator</title>
+		<link rel="stylesheet" href="/static/bootstrap.css">
+		<link rel="stylesheet" href="/static/bootstrap-theme.css">
+		<link rel="stylesheet" href="/static/calculator.css">
+	</head>
+	<body>
+		<form action="/calculator/" method="post">
+		<div class="calculator">
+			<div class="bar">
+				<input id="display" name="display" type="text" class="form-control input-lg text-right" readonly value={{display}}>
+				<input id="preval" name="preval" type="hidden" value={{preval}}>
+				<input id="curval" name="curval" type="hidden" value={{curval}}>
+				<input id="preopt" name="preopt" type="hidden" value={{preopt}}>
+				<input id="error" name="error" type="hidden" value={{error}}>				
+			</div>
+			<div class="col">
+				<button id="7" name="7" value="7" type="submit" class="btn btn-lg btn-info number">7</button>
+				<button id="8" name="8" value="8" type="submit" class="btn btn-lg btn-info number">8</button>
+				<button id="9" name="9" value="9" type="submit" class="btn btn-lg btn-info number">9</button>
+				<button id="+" name="+" value="+" type="submit" class="btn btn-lg btn-info operator">+</button>
+			</div>
+			<div class="col">
+				<button id="4" name="4" value="4" type="submit" class="btn btn-lg btn-info number">4</button>
+				<button id="5" name="5" value="5" type="submit" class="btn btn-lg btn-info number">5</button>
+				<button id="6" name="6" value="6" type="submit" class="btn btn-lg btn-info number">6</button>
+				<button id="-" name="-" value="-" type="submit" class="btn btn-lg btn-info operator">-</button>
+			</div>
+			<div class="col">
+				<button id="1" name="1" value="1" type="submit" class="btn btn-lg btn-info number">1</button>
+				<button id="2" name="2" value="2" type="submit" class="btn btn-lg btn-info number">2</button>
+				<button id="3" name="3" value="3" type="submit" class="btn btn-lg btn-info number">3</button>
+				<button id="*" name="*" value="*" type="submit" class="btn btn-lg btn-info operator">*</button>
+			</div>
+			<div class="col">
+				<button id="C" name="C" value="C" type="submit" class="btn btn-lg btn-warning clear">C</button>
+				<button id="0" name="0" value="0" type="submit" class="btn btn-lg btn-info number">0</button>
+				<button id="=" name="=" value="=" type="submit" class="btn btn-lg btn-info result">=</button>
+				<button id="/" name="/" value="/" type="submit" class="btn btn-lg btn-info operator">/</button>
+			</div>
+		</div>
+		{% csrf_token %}
+		</form>
+	</body>
+</html>
